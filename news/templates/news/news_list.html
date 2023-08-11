@@ -1,0 +1,9 @@
+
+<body>
+    {% for item in news %}
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.content }}</p>
+        <small>Дата создания: {{ item.created_at }}</small>
+        <hr>
+    {% endfor %}
+</body>
