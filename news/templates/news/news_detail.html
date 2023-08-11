@@ -1,5 +1,24 @@
-<body>
-    <h2>{{ news.title }}</h2>
-    <p>{{ news.content }}</p>
-    <small>Дата создания: {{ news.created_at }}</small>
-</body>
+<h2>{{ news.title }}</h2>
+<p>{{ news.content }}</p>
+<small>Дата создания: {{ news.created_at }}</small>
+
+<h3>Комментарии:</h3>
+{% if comments %}
+    <ul>
+    {% for comment in comments %}
+        <li>
+            <p>{{ comment.content }}</p>
+            <small>{{ comment.created_at }}</small>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Нет комментариев к этой новости.</p>
+{% endif %}
+
+<h3>Добавить комментарий:</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Добавить</button>
+</form>
