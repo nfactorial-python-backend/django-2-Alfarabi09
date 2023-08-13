@@ -8,7 +8,7 @@ def news_list(request):
 
 def news_detail(request, news_id):
     news_item = get_object_or_404(News, id=news_id)
-    comments = news_item.comments.all()
+    comments = news_item.comments.order_by('-created_at').all()
     
     if request.method == "POST":
         form = CommentForm(request.POST)

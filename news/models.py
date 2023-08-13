@@ -6,6 +6,12 @@ class News(models.Model):
     content = models.TextField(verbose_name="текст")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="дата создания")
 
+    def has_comments(self):
+        return self.comments.exists()
+    has_comments.boolean = True
+    has_comments.short_description = "Has Comments?"
+
+
 class Comment(models.Model):
     content = models.TextField(verbose_name="текст")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="дата создания")
